@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+       <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+       <property name="CONSOLE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5p)] %m%n%wEx"/>
+       <property name="FILE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5p)] %m%n%wEx"/>
+       <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+       <!--按天生成日志-->
+       <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+              <file>${LOG_FILE}</file>
+              <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                     <FileNamePattern>
+                            ${LOG_FILE}.%d{yyyy-MM-dd}
+                     </FileNamePattern>
+              </rollingPolicy>
+              <encoder>
+                     <pattern>${FILE_LOG_PATTERN}</pattern>
+              </encoder>
+       </appender>
+       <root level="INFO">
+              <appender-ref ref="CONSOLE" />
+              <appender-ref ref="FILE" />
+       </root>
+</configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chngc.collect.dao.BusiCollectPriceSpiderMapper" >
+  <resultMap id="BaseResultMap" type="com.chngc.collect.entity.BusiCollectPriceSpider" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR" />
+    <result column="goods_quantity" property="goodsQuantity" jdbcType="INTEGER" />
+    <result column="deal_end_date" property="dealEndDate" jdbcType="TIMESTAMP" />
+    <result column="creat_date" property="creatDate" jdbcType="TIMESTAMP" />
+    <result column="deal_price" property="dealPrice" jdbcType="DECIMAL" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="trade_type" property="tradeType" jdbcType="INTEGER" />
+    <result column="trade_url" property="tradeUrl" jdbcType="VARCHAR" />
+    <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
+    <result column="currency_year" property="currencyYear" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.chngc.collect.entity.BusiCollectPriceSpider" >
+    insert into busi_collect_price_spider (id, source_type, source_id, 
+      goods_name, goods_desc, goods_quantity, 
+      deal_end_date, creat_date, deal_price, 
+      total_price, trade_type, trade_url, 
+      goods_image_url, currency_year)
+    values (#{id,jdbcType=INTEGER}, #{sourceType,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsDesc,jdbcType=VARCHAR}, #{goodsQuantity,jdbcType=INTEGER}, 
+      #{dealEndDate,jdbcType=TIMESTAMP}, #{creatDate,jdbcType=TIMESTAMP}, #{dealPrice,jdbcType=DECIMAL}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{tradeType,jdbcType=INTEGER}, #{tradeUrl,jdbcType=VARCHAR}, 
+      #{goodsImageUrl,jdbcType=VARCHAR}, #{currencyYear,jdbcType=VARCHAR})
+  </insert>
+
+
+  <select id="getLastCollect" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, source_type, source_id, goods_name, goods_desc, goods_quantity, deal_end_date,
+    creat_date, deal_price, total_price, trade_type, trade_url, goods_image_url, currency_year
+    from busi_collect_price_spider
+    where source_type = #{sourceType,jdbcType=INTEGER}
+    ORDER BY deal_end_date DESC LIMIT 1
+  </select>
+</mapper>
