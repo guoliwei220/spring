@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.HightConcurrence.dao.RedPacketRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.example.HightConcurrence.entity.RedPacketRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="red_id" property="redId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from red_packet_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.HightConcurrence.entity.RedPacketRecord" >
+    insert into red_packet_record (id, red_id, user_id, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{redId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.HightConcurrence.entity.RedPacketRecord" >
+    update red_packet_record
+    set red_id = #{redId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, red_id, user_id, create_date
+    from red_packet_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, red_id, user_id, create_date
+    from red_packet_record where  user_id = #{userId}
+  </select>
+</mapper>
