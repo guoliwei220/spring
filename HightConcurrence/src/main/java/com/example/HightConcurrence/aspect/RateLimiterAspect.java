@@ -53,7 +53,7 @@ public class RateLimiterAspect {
         response.setHeader("context-type","text/html;chartset = UTF-8");
         PrintWriter printWriter = null;
         try {
-            response.getWriter();
+            printWriter = response.getWriter();
             printWriter.print("服务开小差，请稍后重试！");
             printWriter.flush();
         } catch (IOException e) {

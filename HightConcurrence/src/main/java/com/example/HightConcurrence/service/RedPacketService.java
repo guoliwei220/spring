@@ -88,6 +88,12 @@ public class RedPacketService {
         }
     }
 
+    /**
+     * synchronized:线程锁，只适合用于单机
+     * @param redPacketRecord
+     * @param syncMointer
+     * @return
+     */
     public  Boolean getRedPacket4(RedPacketRecord redPacketRecord, Object syncMointer){
         //线程锁只适合单机版本，不能在高并发的情况下使用
         synchronized (syncMointer){

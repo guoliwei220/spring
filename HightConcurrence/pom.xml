@@ -73,7 +73,11 @@
             <artifactId>guava-gwt</artifactId>
             <version>27.1-jre</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

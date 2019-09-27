@@ -49,7 +49,7 @@ public class RateLimiterAspectR {
     public Object process(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //获取方法签名
         MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
-        //使用java反射获取方法上是否有DlRateLimiter注解
+        //使用java反射获取方法上是否有DlRateLimiterR注解
         DlRateLimiterR dlRateLimiterR = signature.getMethod().getDeclaredAnnotation(DlRateLimiterR.class);
         if(dlRateLimiterR == null){
             return proceedingJoinPoint.proceed();
@@ -83,6 +83,5 @@ public class RateLimiterAspectR {
                 printWriter.close();
             }
         }
-
     }
 }
